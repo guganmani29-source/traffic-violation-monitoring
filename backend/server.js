@@ -16,8 +16,11 @@ const PORT = process.env.PORT || 5000;
 
 async function start() {
   try {
+    console.log('MONGO_URI:', process.env.MONGO_URI); // Debug log to verify URI
     await mongoose.connect(process.env.MONGO_URI, {
       serverSelectionTimeoutMS: 10000,
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
     });
     console.log('MongoDB connected');
     app.listen(PORT, () => console.log(`API running on port ${PORT}`));
